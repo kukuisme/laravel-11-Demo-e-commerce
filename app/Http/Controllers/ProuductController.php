@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 
 class ProuductController extends Controller
@@ -12,8 +14,8 @@ class ProuductController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $this->getData();
-        dump($data);
+        // $data = $this->getData();
+        $data = DB::table('products')->get();
         return response($data);
     }
 
@@ -30,10 +32,10 @@ class ProuductController extends Controller
      */
     public function store(Request $request)
     {
-            $data= $this -> getData();
-            $newdata = $request->all();
-            $data->push($newdata);
-            dump($data);
+            // $data= $this -> getData();
+            // $newdata = $request->all();
+            // $data->push($newdata);
+            // dump($data);
     }
 
     /**
@@ -59,11 +61,11 @@ class ProuductController extends Controller
     public function update(Request $request, string $id)
     {
         //更新參數方法
-        $form = $request->all();
-        $data  = $this->getData();
-        $selectData = $data->where('id',$id)->first();
-        $selectData = $selectData->merge(collect($form));  
-        return response($selectData);
+        // $form = $request->all();
+        // $data  = $this->getData();
+        // $selectData = $data->where('id',$id)->first();
+        // $selectData = $selectData->merge(collect($form));  
+        // return response($selectData);
     }
 
     /**
@@ -71,29 +73,30 @@ class ProuductController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = $this->getData();
-        $data = $data->filter(function($prouduct) use($id){
-                return $prouduct['id']!= $id;
-        });
-        return response($data->values());
+        // $data = $this->getData();
+        // $data = $data->filter(function($prouduct) use($id){
+        //         return $prouduct['id']!= $id;
+        // });
+        // return response($data->values());
 
     }
     public function getData()
     {
-        return collect([
-            collect([
-                'id'=>0,
-                'title'=>'測試商品一',
-                'content'=>'很棒的商品',
-                'price'=>50
-            ]),
-            collect([
-                'id'=>1,
-                'title'=>'測試商品二',
-                'content'=>'很讚的商品',
-                'price'=>30
-            ]),
-        ]);
+        // return collect([
+        //     collect([
+        //         'id'=>0,
+        //         'title'=>'測試商品一',
+        //         'content'=>'很棒的商品',
+        //         'price'=>50 
+        //     ]),
+        //     collect([
+        //         'id'=>1,
+        //         'title'=>'測試商品二',
+        //         'content'=>'很讚的商品',
+        //         'price'=>30
+        //     ]),
+        // ]);
     }
+    
 
 }
