@@ -4,6 +4,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckDirtyWord;
+use Illuminate\Auth\AuthenticationException;
+
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -17,11 +20,14 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+       
+        // $middleware->append(CheckDirtyWord::class);
         $middleware->validateCsrfTokens(except: [
             '*'
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(function (AuthenticationException $e) {
+            return response()->json('Unauthenticated', 401);
+        });
     })->create();

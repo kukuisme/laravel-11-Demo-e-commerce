@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Cart;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 
 class CartController extends Controller
 {
@@ -13,15 +15,31 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = DB::table('carts')->get()->first();
-        if(empty($cart)){
-            DB::table('carts')->insert(['created_at'=>now(),'updated_at'=>now()]);
-            $cart = DB::table('carts')->get()->first();
+        // $cart = DB::table('carts')->get()->first();
+        // if(empty($cart)){
+        //     DB::table('carts')->insert(['created_at'=>now(),'updated_at'=>now()]);
+        //     $cart = DB::table('carts')->get()->first();
+        // }
+        // $cartItems = DB::table('cart_items')->where('cart_id',$cart->id)->get();
+        // $cart = collect($cart);
+        // $cart['items'] =  collect($cartItems);
+
+        $user = auth()->user();
+        $cart = Cart::with(['CartItems'])->where('user_id',$user->id)
+                                         ->where('checkouted',false)
+                                         ->firstOrCreate(['user_id'=>$user->id]); //解決n+0的問題
+        return response($cart);
+    }
+
+    public function checkout(){
+        $user = auth()->User();
+        $cart = $user->carts()->where('checkouted',false)->with('cartItems')->first();
+        if($cart){
+            $result = $cart->checkout();
+            return response($result);
+        }else{
+            return response('沒有購物車',400); 
         }
-        $cartItems = DB::table('cart_items')->where('cart_id',$cart->id)->get();
-        $cart = collect($cart);
-        $cart['items'] =  collect($cartItems);
-        return response(collect($cart));
     }
 
     /**

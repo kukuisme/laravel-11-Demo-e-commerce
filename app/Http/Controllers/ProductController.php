@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class ProuductController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -80,23 +80,7 @@ class ProuductController extends Controller
         // return response($data->values());
 
     }
-    public function getData()
-    {
-        // return collect([
-        //     collect([
-        //         'id'=>0,
-        //         'title'=>'測試商品一',
-        //         'content'=>'很棒的商品',
-        //         'price'=>50 
-        //     ]),
-        //     collect([
-        //         'id'=>1,
-        //         'title'=>'測試商品二',
-        //         'content'=>'很讚的商品',
-        //         'price'=>30
-        //     ]),
-        // ]);
-    }
+
     
 
 }
