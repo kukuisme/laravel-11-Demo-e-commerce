@@ -2,11 +2,11 @@ Docker compose to setup php and mysql for Laravel 8.
 
 Function:
 
-Cart CRUD
-Auth Signup, Login, Logout
-Checkout
-VIP Discount
-Check Quantity
+1. Cart CRUD
+2. Auth Signup, Login, Logout
+3. Checkout
+4. VIP Discount
+5. Check Quantity
 
 Environment
 Ubuntu 22.04
