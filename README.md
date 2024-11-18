@@ -1,23 +1,19 @@
-# e-commerce-features
-API Server 
-功能列表:
+Docker compose to setup php and mysql for Laravel 8.
 
-1. Cart 購物車功能，可以建立、讀取、編輯( 添加產品 )和移除產品
+Function:
 
-2. Auth 會員註冊、登入與登出功能
+Cart CRUD
+Auth Signup, Login, Logout
+Checkout
+VIP Discount
+Check Quantity
 
-3. 結帳功能 + VIP 優惠 + 商品數量檢查防呆
+Environment
+Ubuntu 22.04
+Docker 20.10.18
+Directory Structure
 
+SQL Structure
 
-
-系統功能:
-
-1. 需使用 Eloquent Model 完成功能
-
-2. 需使用軟刪除特性
-
-3. 需有資料 Validator
-
-4. 需有資料預產生器 Seeder
-
-[Postman作品DEMO](https://youtu.be/Jy60L5x-SWk)
+draw diagram in dbdiagram
+![db-structure](https://github.com/user-attachments/assets/30bb00e7-da42-4b09-80eb-9e636decdf67)
