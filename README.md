@@ -15,6 +15,6 @@ Directory Structure
 
 SQL Structure
 
-draw diagram in dbdiagram
+draw diagram in dbdiagram (https://dbdiagram.io/d/63b3b3ce7d39e42284e88c94)
 
 ![db-structure](https://github.com/user-attachments/assets/30bb00e7-da42-4b09-80eb-9e636decdf67)
